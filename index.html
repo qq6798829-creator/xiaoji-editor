@@ -140,7 +140,7 @@
 <section id="panel-decor-scenes" class="panel" hidden data-screen="scenes">
   <header class="decor-topbar">
     <button type="button" class="ghost decor-back" data-action="back" data-go="panel-hub">返回</button>
-    <h1 class="decor-topbar-title">选择房间</h1>
+    <h1 class="decor-topbar-title">我的DIY家装</h1>
     <div class="decor-topbar-mascot" aria-hidden="true"><svg viewBox="0 0 100 114" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
     <ellipse cx="36" cy="106" rx="12" ry="7.5" fill="#ff7a1a" stroke="#171615" stroke-width="2.4"/>
     <ellipse cx="64" cy="106" rx="12" ry="7.5" fill="#ff7a1a" stroke="#171615" stroke-width="2.4"/>
@@ -157,82 +157,20 @@
     <path d="M40 82 Q50 93 60 82" fill="none" stroke="#171615" stroke-width="3.2" stroke-linecap="round"/>
 </svg></div>
   </header>
-  <h2>布置哪个房间？</h2>
-  <p class="hint">三个房间：客厅、浴室、卧室。每个槽位的名称、建议尺寸和格式来自设备固件的房间布局，以及官方素材的实测格式。</p>
-  <div id="decor-scene-list" class="decor-scene-list">
-    <button type="button" class="decor-scene-card" id="decor-scene-living"
-      data-scene="living" data-scene-title="客厅" data-go="panel-decor-edit" aria-pressed="false">
-      <svg class="decor-scene-illu" viewBox="0 0 118 104" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <rect x="2" y="2" width="114" height="100" rx="18" fill="#ffe7b8" stroke="#171615" stroke-width="2.4"/>
-  <rect x="2" y="68" width="114" height="34" rx="0" fill="#e8a04a"/>
-  <path d="M2 68 H116" stroke="#171615" stroke-width="2"/>
-  <ellipse cx="60" cy="86" rx="34" ry="9" fill="#8ad63f" stroke="#171615" stroke-width="2"/>
-  <rect x="18" y="48" width="82" height="34" rx="10" fill="#ff7a1a" stroke="#171615" stroke-width="2.3"/>
-  <rect x="26" y="54" width="28" height="16" rx="6" fill="#fff3d6" stroke="#171615" stroke-width="1.6"/>
-  <rect x="64" y="54" width="28" height="16" rx="6" fill="#fff3d6" stroke="#171615" stroke-width="1.6"/>
-  <ellipse class="ui-eye-w" cx="48" cy="44" rx="8" ry="10" fill="#fff" stroke="#171615" stroke-width="1.6"/>
-  <ellipse class="ui-eye-w d2" cx="70" cy="44" rx="8" ry="10" fill="#fff" stroke="#171615" stroke-width="1.6"/>
-  <circle cx="50.5" cy="46" r="3.4" fill="#171615"/>
-  <circle cx="72" cy="43" r="3.4" fill="#171615"/>
-  <rect x="8" y="14" width="22" height="22" rx="6" fill="#6ec6ee" stroke="#171615" stroke-width="2"/>
-  <path d="M8 25 H30 M19 14 V36" stroke="#171615" stroke-width="1.5"/>
-  <circle cx="100" cy="26" r="10" fill="#ffd12a" stroke="#171615" stroke-width="2"/>
-  <rect x="97" y="36" width="6" height="10" fill="#171615"/>
-</svg>
-      <strong>客厅</strong>
-      <span>日常起居的房间</span>
-    </button>
-    <button type="button" class="decor-scene-card" id="decor-scene-bath"
-      data-scene="bath" data-scene-title="浴室" data-go="panel-decor-edit" aria-pressed="false">
-      <svg class="decor-scene-illu" viewBox="0 0 118 104" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <rect x="2" y="2" width="114" height="100" rx="18" fill="#bfeaf6" stroke="#171615" stroke-width="2.4"/>
-  <rect x="2" y="70" width="114" height="32" fill="#7ec8c0"/>
-  <path d="M2 70 H116" stroke="#171615" stroke-width="2"/>
-  <rect x="16" y="46" width="86" height="40" rx="18" fill="#fff6e8" stroke="#171615" stroke-width="2.4"/>
-  <rect x="16" y="62" width="86" height="24" rx="12" fill="#6ec6ee"/>
-  <path d="M16 66 H102" stroke="#171615" stroke-width="1.6"/>
-  <ellipse class="ui-eye-w" cx="48" cy="56" rx="8" ry="9.5" fill="#fff" stroke="#171615" stroke-width="1.6"/>
-  <ellipse class="ui-eye-w d2" cx="70" cy="56" rx="8" ry="9.5" fill="#fff" stroke="#171615" stroke-width="1.6"/>
-  <circle cx="50.2" cy="58" r="3.3" fill="#171615"/>
-  <circle cx="72" cy="54.5" r="3.3" fill="#171615"/>
-  <rect x="96" y="14" width="12" height="28" rx="5" fill="#ff6ba8" stroke="#171615" stroke-width="2"/>
-  <circle cx="26" cy="22" r="6" fill="#ffd12a" stroke="#171615" stroke-width="1.8"/>
-  <ellipse cx="22" cy="16" rx="3" ry="4" fill="#ffd12a" stroke="#171615" stroke-width="1.4"/>
-  <path d="M78 18 q6 8 0 16" fill="none" stroke="#6ec6ee" stroke-width="2.4" stroke-linecap="round"/>
-  <path d="M86 20 q6 8 0 16" fill="none" stroke="#6ec6ee" stroke-width="2.4" stroke-linecap="round"/>
-</svg>
-      <strong>浴室</strong>
-      <span>洗澡时的房间</span>
-    </button>
-    <button type="button" class="decor-scene-card" id="decor-scene-sleep"
-      data-scene="sleep" data-scene-title="卧室" data-go="panel-decor-edit" aria-pressed="false">
-      <svg class="decor-scene-illu" viewBox="0 0 118 104" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <rect x="2" y="2" width="114" height="100" rx="18" fill="#3d4468" stroke="#171615" stroke-width="2.4"/>
-  <rect x="2" y="72" width="114" height="30" fill="#5a4a6a"/>
-  <path d="M2 72 H116" stroke="#171615" stroke-width="2"/>
-  <circle cx="96" cy="22" r="11" fill="#ffd12a" stroke="#171615" stroke-width="2"/>
-  <circle cx="101" cy="18" r="7" fill="#3d4468"/>
-  <rect x="14" y="50" width="90" height="36" rx="12" fill="#fff3d6" stroke="#171615" stroke-width="2.4"/>
-  <rect x="14" y="68" width="90" height="18" rx="8" fill="#ff6ba8"/>
-  <path d="M14 70 H104" stroke="#171615" stroke-width="1.6"/>
-  <rect x="22" y="42" width="36" height="22" rx="10" fill="#ff9ec8" stroke="#171615" stroke-width="2"/>
-  <ellipse class="ui-eye-w" cx="34" cy="52" rx="6.5" ry="5" fill="#fff" stroke="#171615" stroke-width="1.5"/>
-  <ellipse class="ui-eye-w d2" cx="48" cy="52" rx="6.5" ry="5" fill="#fff" stroke="#171615" stroke-width="1.5"/>
-  <rect x="30" y="51" width="8" height="3.2" rx="1.5" fill="#171615"/>
-  <rect x="44" y="51" width="8" height="3.2" rx="1.5" fill="#171615"/>
-  <rect x="88" y="40" width="14" height="10" rx="3" fill="#6ec6ee" stroke="#171615" stroke-width="1.6"/>
-  <rect x="92" y="50" width="6" height="10" fill="#171615"/>
-</svg>
-      <strong>卧室</strong>
-      <span>睡觉时的房间</span>
-    </button>
+
+  <h2>我的 DIY 家装</h2>
+  <p class="hint">一套 DIY 家装包含客厅、卧室、浴室三张 360×360 背景图，以及「家」的配色和按键配饰。只能新增或删除整套，不会改已购买的家装风格。</p>
+  <div id="diy-set-list" class="diy-set-list"></div>
+  <div class="row">
+    <button type="button" id="diy-btn-add" data-action="diy-add">新增一套</button>
   </div>
+
 </section>
 
 <section id="panel-decor-edit" class="panel" hidden data-screen="edit">
   <header class="decor-topbar">
     <button type="button" class="ghost decor-back" data-action="back" data-go="panel-decor-scenes">返回</button>
-    <h1 class="decor-topbar-title">布置房间</h1>
+    <h1 class="decor-topbar-title">编辑家装</h1>
     <div class="decor-topbar-mascot" aria-hidden="true"><svg viewBox="0 0 100 114" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
     <ellipse cx="36" cy="106" rx="12" ry="7.5" fill="#ff7a1a" stroke="#171615" stroke-width="2.4"/>
     <ellipse cx="64" cy="106" rx="12" ry="7.5" fill="#ff7a1a" stroke="#171615" stroke-width="2.4"/>
@@ -249,121 +187,52 @@
     <path d="M40 82 Q50 93 60 82" fill="none" stroke="#171615" stroke-width="3.2" stroke-linecap="round"/>
 </svg></div>
   </header>
-  <p class="decor-scene-badge">当前房间：<strong id="decor-current-scene" data-scene="living" data-field="scene-title">客厅</strong></p>
+
+  <label>家装名称（1～8 个字）
+    <input id="diy-set-name" type="text" maxlength="24" placeholder="例如：暖暖家" autocomplete="off">
+  </label>
+  <p id="diy-name-err" class="hint" hidden></p>
 
   <div class="decor-stage-wrap" id="decor-stage-wrap" data-scene="living">
     <canvas id="decor-stage" width="360" height="360" aria-label="家装圆屏预览"></canvas>
-    <div id="decor-stage-placeholder" class="decor-stage-placeholder">
-      <svg data-illu="living" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <defs>
-    <clipPath id="circ-living"><circle cx="180" cy="180" r="180"/></clipPath>
-  </defs>
-  <g clip-path="url(#circ-living)">
-    <rect width="360" height="360" fill="#ffe7b8"/>
-    <rect y="230" width="360" height="130" fill="#e8a04a"/>
-    <path d="M0 230 H360" stroke="#171615" stroke-width="4"/>
-    <ellipse cx="180" cy="268" rx="120" ry="28" fill="#8ad63f" stroke="#171615" stroke-width="4"/>
-    <!-- sofa -->
-    <rect x="50" y="175" width="260" height="100" rx="28" fill="#ff7a1a" stroke="#171615" stroke-width="5"/>
-    <rect x="72" y="190" width="90" height="48" rx="16" fill="#fff3d6" stroke="#171615" stroke-width="3.2"/>
-    <rect x="198" y="190" width="90" height="48" rx="16" fill="#fff3d6" stroke="#171615" stroke-width="3.2"/>
-    <!-- sofa eyes -->
-    <ellipse class="ui-eye-w" cx="145" cy="158" rx="22" ry="28" fill="#fff" stroke="#171615" stroke-width="3.5"/>
-    <ellipse class="ui-eye-w d2" cx="215" cy="158" rx="22" ry="28" fill="#fff" stroke="#171615" stroke-width="3.5"/>
-    <circle cx="152" cy="164" r="10" fill="#171615"/>
-    <circle cx="222" cy="152" r="10" fill="#171615"/>
-    <circle cx="157" cy="158" r="3.4" fill="#fff"/>
-    <circle cx="226" cy="146" r="3.4" fill="#fff"/>
-    <!-- window -->
-    <rect x="28" y="48" width="72" height="72" rx="14" fill="#6ec6ee" stroke="#171615" stroke-width="4"/>
-    <path d="M28 84 H100 M64 48 V120" stroke="#171615" stroke-width="3"/>
-    <!-- lamp -->
-    <circle cx="300" cy="86" r="32" fill="#ffd12a" stroke="#171615" stroke-width="4"/>
-    <rect x="292" y="118" width="16" height="32" fill="#171615"/>
-    <!-- tiny 小吉 sitting -->
-    <circle cx="180" cy="248" r="22" fill="#fff3d6" stroke="#171615" stroke-width="3"/>
-    <ellipse cx="172" cy="245" rx="6" ry="7.5" fill="#fff" stroke="#171615" stroke-width="1.4"/>
-    <ellipse cx="188" cy="245" rx="6" ry="7.5" fill="#fff" stroke="#171615" stroke-width="1.4"/>
-    <circle cx="174" cy="247" r="2.6" fill="#171615"/>
-    <circle cx="190" cy="244" r="2.6" fill="#171615"/>
-  </g>
-</svg>
-      <svg data-illu="bath" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <defs>
-    <clipPath id="circ-bath"><circle cx="180" cy="180" r="180"/></clipPath>
-  </defs>
-  <g clip-path="url(#circ-bath)">
-    <rect width="360" height="360" fill="#bfeaf6"/>
-    <rect y="230" width="360" height="130" fill="#7ec8c0"/>
-    <path d="M0 230 H360" stroke="#171615" stroke-width="4"/>
-    <rect x="48" y="155" width="264" height="130" rx="58" fill="#fff6e8" stroke="#171615" stroke-width="5"/>
-    <rect x="48" y="210" width="264" height="75" rx="38" fill="#6ec6ee"/>
-    <path d="M48 218 H312" stroke="#171615" stroke-width="3"/>
-    <ellipse class="ui-eye-w" cx="145" cy="188" rx="24" ry="28" fill="#fff" stroke="#171615" stroke-width="3.5"/>
-    <ellipse class="ui-eye-w d2" cx="215" cy="188" rx="24" ry="28" fill="#fff" stroke="#171615" stroke-width="3.5"/>
-    <circle cx="153" cy="194" r="10" fill="#171615"/>
-    <circle cx="222" cy="182" r="10" fill="#171615"/>
-    <circle cx="158" cy="188" r="3.4" fill="#fff"/>
-    <circle cx="226" cy="176" r="3.4" fill="#fff"/>
-    <!-- towel -->
-    <rect x="292" y="48" width="36" height="90" rx="14" fill="#ff6ba8" stroke="#171615" stroke-width="4"/>
-    <!-- soap buddy (round, not a duck copy of anything specific) -->
-    <circle cx="86" cy="72" r="28" fill="#ffd12a" stroke="#171615" stroke-width="4"/>
-    <ellipse cx="78" cy="68" rx="8" ry="10" fill="#fff" stroke="#171615" stroke-width="2"/>
-    <ellipse cx="98" cy="68" rx="8" ry="10" fill="#fff" stroke="#171615" stroke-width="2"/>
-    <circle cx="80" cy="70" r="3.4" fill="#171615"/>
-    <circle cx="100" cy="66" r="3.4" fill="#171615"/>
-    <!-- drips -->
-    <path d="M240 50 q20 28 0 54" fill="none" stroke="#3aa8c8" stroke-width="7" stroke-linecap="round"/>
-    <path d="M262 62 q20 28 0 54" fill="none" stroke="#3aa8c8" stroke-width="7" stroke-linecap="round"/>
-  </g>
-</svg>
-      <svg data-illu="sleep" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <defs>
-    <clipPath id="circ-sleep"><circle cx="180" cy="180" r="180"/></clipPath>
-  </defs>
-  <g clip-path="url(#circ-sleep)">
-    <rect width="360" height="360" fill="#3d4468"/>
-    <rect y="248" width="360" height="112" fill="#5a4a6a"/>
-    <path d="M0 248 H360" stroke="#171615" stroke-width="4"/>
-    <!-- moon: full yellow circle with a smaller offset dark circle = crescent. simple original. -->
-    <circle cx="278" cy="78" r="38" fill="#ffd12a" stroke="#171615" stroke-width="4"/>
-    <circle cx="294" cy="66" r="26" fill="#3d4468"/>
-    <!-- bed -->
-    <rect x="42" y="175" width="276" height="118" rx="32" fill="#fff3d6" stroke="#171615" stroke-width="5"/>
-    <rect x="42" y="232" width="276" height="61" rx="24" fill="#ff6ba8"/>
-    <path d="M42 240 H318" stroke="#171615" stroke-width="3"/>
-    <!-- pillow with sleepy eyes -->
-    <rect x="62" y="148" width="118" height="68" rx="28" fill="#ff9ec8" stroke="#171615" stroke-width="4"/>
-    <ellipse class="ui-eye-w" cx="98" cy="178" rx="16" ry="12" fill="#fff" stroke="#171615" stroke-width="3"/>
-    <ellipse class="ui-eye-w d2" cx="144" cy="178" rx="16" ry="12" fill="#fff" stroke="#171615" stroke-width="3"/>
-    <rect x="88" y="175" width="20" height="8" rx="4" fill="#171615"/>
-    <rect x="134" y="175" width="20" height="8" rx="4" fill="#171615"/>
-    <!-- nightstand + lamp -->
-    <rect x="268" y="200" width="48" height="36" rx="8" fill="#6ec6ee" stroke="#171615" stroke-width="3"/>
-    <circle cx="292" cy="168" r="22" fill="#ffd12a" stroke="#171615" stroke-width="3.5"/>
-    <rect x="286" y="190" width="12" height="14" fill="#171615"/>
-  </g>
-</svg>
-    </div>
-    <div id="decor-stage-wash" class="decor-stage-wash" aria-hidden="true"></div>
+    <p class="decor-stage-hint hint">预览已按 360×360 裁切。可在圆屏上拖动调整位置。</p>
   </div>
-  <p id="decor-stage-caption" class="muted">预览为 360 圆屏示意，不含设备原画。</p>
 
+  <h2>三张房间图</h2>
+  <p class="hint">需要恰好 360×360 的 PNG（设备用 XF02 不透明 fmt2）。其它尺寸会自动等比裁切填满。</p>
+  <div id="diy-rooms" class="diy-rooms">
+    <label class="diy-room is-on" data-room="living" data-name="客厅">
+      <strong>客厅</strong>
+      <canvas width="120" height="120" aria-hidden="true"></canvas>
+      <span class="diy-room-status">需要 360×360，其他尺寸会自动裁切填满</span>
+      <input class="diy-room-file" type="file" accept="image/png,image/jpeg,.png,.jpg,.jpeg,.xf,image/*">
+      <button type="button" class="ghost diy-room-clear">清除</button>
+    </label>
+    <label class="diy-room" data-room="bedroom" data-name="卧室">
+      <strong>卧室</strong>
+      <canvas width="120" height="120" aria-hidden="true"></canvas>
+      <span class="diy-room-status">需要 360×360，其他尺寸会自动裁切填满</span>
+      <input class="diy-room-file" type="file" accept="image/png,image/jpeg,.png,.jpg,.jpeg,.xf,image/*">
+      <button type="button" class="ghost diy-room-clear">清除</button>
+    </label>
+    <label class="diy-room" data-room="bathroom" data-name="浴室">
+      <strong>浴室</strong>
+      <canvas width="120" height="120" aria-hidden="true"></canvas>
+      <span class="diy-room-status">需要 360×360，其他尺寸会自动裁切填满</span>
+      <input class="diy-room-file" type="file" accept="image/png,image/jpeg,.png,.jpg,.jpeg,.xf,image/*">
+      <button type="button" class="ghost diy-room-clear">清除</button>
+    </label>
+  </div>
   <div class="row">
-    <button type="button" id="decor-btn-palette" class="ghost" data-go="panel-decor-palette">风格配色</button>
-    <button type="button" id="decor-btn-goto-export" data-go="panel-decor-export">导出家装包</button>
+    <button type="button" id="diy-btn-palette" data-go="panel-decor-palette">配色与按键配饰</button>
   </div>
 
-  <h2>槽位</h2>
-  <p class="hint" id="decor-slot-legend">尺寸来自固件布局：墙纸和地板建议按列出的像素导出（与官方 shop 素材一致）；家具以布局框为目标，尺寸不符时可自动裁剪/缩放。柜子和挂画不在官方 roomdiy 档案中，将以侧车文件安装，不改已拥有款式。</p>
-  <div id="decor-slot-list"></div>
 </section>
 
 <section id="panel-decor-palette" class="panel" hidden data-screen="palette">
   <header class="decor-topbar">
     <button type="button" class="ghost decor-back" data-action="back" data-go="panel-decor-edit">返回</button>
-    <h1 class="decor-topbar-title">风格配色</h1>
+    <h1 class="decor-topbar-title">配色和配饰</h1>
     <div class="decor-topbar-mascot" aria-hidden="true"><svg viewBox="0 0 100 114" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
     <ellipse cx="36" cy="106" rx="12" ry="7.5" fill="#ff7a1a" stroke="#171615" stroke-width="2.4"/>
     <ellipse cx="64" cy="106" rx="12" ry="7.5" fill="#ff7a1a" stroke="#171615" stroke-width="2.4"/>
@@ -380,142 +249,51 @@
     <path d="M40 82 Q50 93 60 82" fill="none" stroke="#171615" stroke-width="3.2" stroke-linecap="round"/>
 </svg></div>
   </header>
-  <p class="hint" id="decor-palette-intro">拖动滑杆或点预设（暖阳、薄荷、夜空、糖果），圆屏会立刻换色。配色会写进导出的图片。</p>
 
-  <div class="decor-stage-wrap" id="decor-palette-stage-wrap" data-scene="living">
-    <canvas id="decor-palette-stage" width="360" height="360" aria-label="配色预览"></canvas>
-    <div id="decor-palette-placeholder" class="decor-stage-placeholder">
-      <svg data-illu="living" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <defs>
-    <clipPath id="circ-living-p"><circle cx="180" cy="180" r="180"/></clipPath>
-  </defs>
-  <g clip-path="url(#circ-living-p)">
-    <rect width="360" height="360" fill="#ffe7b8"/>
-    <rect y="230" width="360" height="130" fill="#e8a04a"/>
-    <path d="M0 230 H360" stroke="#171615" stroke-width="4"/>
-    <ellipse cx="180" cy="268" rx="120" ry="28" fill="#8ad63f" stroke="#171615" stroke-width="4"/>
-    <!-- sofa -->
-    <rect x="50" y="175" width="260" height="100" rx="28" fill="#ff7a1a" stroke="#171615" stroke-width="5"/>
-    <rect x="72" y="190" width="90" height="48" rx="16" fill="#fff3d6" stroke="#171615" stroke-width="3.2"/>
-    <rect x="198" y="190" width="90" height="48" rx="16" fill="#fff3d6" stroke="#171615" stroke-width="3.2"/>
-    <!-- sofa eyes -->
-    <ellipse class="ui-eye-w" cx="145" cy="158" rx="22" ry="28" fill="#fff" stroke="#171615" stroke-width="3.5"/>
-    <ellipse class="ui-eye-w d2" cx="215" cy="158" rx="22" ry="28" fill="#fff" stroke="#171615" stroke-width="3.5"/>
-    <circle cx="152" cy="164" r="10" fill="#171615"/>
-    <circle cx="222" cy="152" r="10" fill="#171615"/>
-    <circle cx="157" cy="158" r="3.4" fill="#fff"/>
-    <circle cx="226" cy="146" r="3.4" fill="#fff"/>
-    <!-- window -->
-    <rect x="28" y="48" width="72" height="72" rx="14" fill="#6ec6ee" stroke="#171615" stroke-width="4"/>
-    <path d="M28 84 H100 M64 48 V120" stroke="#171615" stroke-width="3"/>
-    <!-- lamp -->
-    <circle cx="300" cy="86" r="32" fill="#ffd12a" stroke="#171615" stroke-width="4"/>
-    <rect x="292" y="118" width="16" height="32" fill="#171615"/>
-    <!-- tiny 小吉 sitting -->
-    <circle cx="180" cy="248" r="22" fill="#fff3d6" stroke="#171615" stroke-width="3"/>
-    <ellipse cx="172" cy="245" rx="6" ry="7.5" fill="#fff" stroke="#171615" stroke-width="1.4"/>
-    <ellipse cx="188" cy="245" rx="6" ry="7.5" fill="#fff" stroke="#171615" stroke-width="1.4"/>
-    <circle cx="174" cy="247" r="2.6" fill="#171615"/>
-    <circle cx="190" cy="244" r="2.6" fill="#171615"/>
-  </g>
-</svg>
-      <svg data-illu="bath" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <defs>
-    <clipPath id="circ-bath-p"><circle cx="180" cy="180" r="180"/></clipPath>
-  </defs>
-  <g clip-path="url(#circ-bath-p)">
-    <rect width="360" height="360" fill="#bfeaf6"/>
-    <rect y="230" width="360" height="130" fill="#7ec8c0"/>
-    <path d="M0 230 H360" stroke="#171615" stroke-width="4"/>
-    <rect x="48" y="155" width="264" height="130" rx="58" fill="#fff6e8" stroke="#171615" stroke-width="5"/>
-    <rect x="48" y="210" width="264" height="75" rx="38" fill="#6ec6ee"/>
-    <path d="M48 218 H312" stroke="#171615" stroke-width="3"/>
-    <ellipse class="ui-eye-w" cx="145" cy="188" rx="24" ry="28" fill="#fff" stroke="#171615" stroke-width="3.5"/>
-    <ellipse class="ui-eye-w d2" cx="215" cy="188" rx="24" ry="28" fill="#fff" stroke="#171615" stroke-width="3.5"/>
-    <circle cx="153" cy="194" r="10" fill="#171615"/>
-    <circle cx="222" cy="182" r="10" fill="#171615"/>
-    <circle cx="158" cy="188" r="3.4" fill="#fff"/>
-    <circle cx="226" cy="176" r="3.4" fill="#fff"/>
-    <!-- towel -->
-    <rect x="292" y="48" width="36" height="90" rx="14" fill="#ff6ba8" stroke="#171615" stroke-width="4"/>
-    <!-- soap buddy (round, not a duck copy of anything specific) -->
-    <circle cx="86" cy="72" r="28" fill="#ffd12a" stroke="#171615" stroke-width="4"/>
-    <ellipse cx="78" cy="68" rx="8" ry="10" fill="#fff" stroke="#171615" stroke-width="2"/>
-    <ellipse cx="98" cy="68" rx="8" ry="10" fill="#fff" stroke="#171615" stroke-width="2"/>
-    <circle cx="80" cy="70" r="3.4" fill="#171615"/>
-    <circle cx="100" cy="66" r="3.4" fill="#171615"/>
-    <!-- drips -->
-    <path d="M240 50 q20 28 0 54" fill="none" stroke="#3aa8c8" stroke-width="7" stroke-linecap="round"/>
-    <path d="M262 62 q20 28 0 54" fill="none" stroke="#3aa8c8" stroke-width="7" stroke-linecap="round"/>
-  </g>
-</svg>
-      <svg data-illu="sleep" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <defs>
-    <clipPath id="circ-sleep-p"><circle cx="180" cy="180" r="180"/></clipPath>
-  </defs>
-  <g clip-path="url(#circ-sleep-p)">
-    <rect width="360" height="360" fill="#3d4468"/>
-    <rect y="248" width="360" height="112" fill="#5a4a6a"/>
-    <path d="M0 248 H360" stroke="#171615" stroke-width="4"/>
-    <!-- moon: full yellow circle with a smaller offset dark circle = crescent. simple original. -->
-    <circle cx="278" cy="78" r="38" fill="#ffd12a" stroke="#171615" stroke-width="4"/>
-    <circle cx="294" cy="66" r="26" fill="#3d4468"/>
-    <!-- bed -->
-    <rect x="42" y="175" width="276" height="118" rx="32" fill="#fff3d6" stroke="#171615" stroke-width="5"/>
-    <rect x="42" y="232" width="276" height="61" rx="24" fill="#ff6ba8"/>
-    <path d="M42 240 H318" stroke="#171615" stroke-width="3"/>
-    <!-- pillow with sleepy eyes -->
-    <rect x="62" y="148" width="118" height="68" rx="28" fill="#ff9ec8" stroke="#171615" stroke-width="4"/>
-    <ellipse class="ui-eye-w" cx="98" cy="178" rx="16" ry="12" fill="#fff" stroke="#171615" stroke-width="3"/>
-    <ellipse class="ui-eye-w d2" cx="144" cy="178" rx="16" ry="12" fill="#fff" stroke="#171615" stroke-width="3"/>
-    <rect x="88" y="175" width="20" height="8" rx="4" fill="#171615"/>
-    <rect x="134" y="175" width="20" height="8" rx="4" fill="#171615"/>
-    <!-- nightstand + lamp -->
-    <rect x="268" y="200" width="48" height="36" rx="8" fill="#6ec6ee" stroke="#171615" stroke-width="3"/>
-    <circle cx="292" cy="168" r="22" fill="#ffd12a" stroke="#171615" stroke-width="3.5"/>
-    <rect x="286" y="190" width="12" height="14" fill="#171615"/>
-  </g>
-</svg>
-    </div>
-    <div id="decor-palette-wash" class="decor-stage-wash" aria-hidden="true"></div>
-  </div>
-  <p id="decor-palette-values">
-    实时
-    <span class="decor-live-chip" id="decor-hue-v" data-field="hue-label">色相 32°</span>
-    <span class="decor-live-chip" id="decor-sat-v" data-field="sat-label">饱和 90%</span>
-    <span class="decor-live-chip" id="decor-light-v" data-field="light-label">亮度 58%</span>
-  </p>
-
-  <h2>预设风格</h2>
-  <div class="decor-presets" id="decor-preset-list">
-    <button type="button" class="decor-preset is-on" id="decor-preset-warm"
-      data-preset="warm" data-hue="32" data-sat="90" data-light="58" aria-pressed="true">
-      <span class="decor-preset-swatch" style="background:hsl(32,90%,58%)"></span>暖阳
-    </button>
-    <button type="button" class="decor-preset" id="decor-preset-mint"
-      data-preset="mint" data-hue="152" data-sat="62" data-light="55" aria-pressed="false">
-      <span class="decor-preset-swatch" style="background:hsl(152,62%,55%)"></span>薄荷
-    </button>
-    <button type="button" class="decor-preset" id="decor-preset-night"
-      data-preset="night" data-hue="228" data-sat="55" data-light="38" aria-pressed="false">
-      <span class="decor-preset-swatch" style="background:hsl(228,55%,38%)"></span>夜空
-    </button>
-    <button type="button" class="decor-preset" id="decor-preset-candy"
-      data-preset="candy" data-hue="336" data-sat="80" data-light="62" aria-pressed="false">
-      <span class="decor-preset-swatch" style="background:hsl(336,80%,62%)"></span>糖果
-    </button>
+  <p class="hint" id="decor-palette-intro">九种颜色对应设备主题的背景、按键、描边、文字、卡片、菜单和三条状态栏。预设来自可购买的家装风格。按键配饰是页脚按钮上的装饰（与官方风格相同的画法，不是一张新图片）。</p>
+  <div class="decor-stage-wrap" id="decor-palette-stage-wrap">
+    <canvas id="decor-palette-stage" width="360" height="360" aria-label="配色与按键预览"></canvas>
   </div>
 
-  <h2>手动调节</h2>
-  <label>色相 <input id="decor-hue" type="range" min="0" max="360" step="1" value="32" data-palette="hue"></label>
-  <label>饱和度 <input id="decor-sat" type="range" min="0" max="100" step="1" value="90" data-palette="sat"></label>
-  <label>亮度 <input id="decor-light" type="range" min="10" max="90" step="1" value="58" data-palette="light"></label>
-  <p class="hint" id="decor-palette-note">色相 0–360，饱和度 0–100%，亮度 10–90%。点「恢复预设」回到当前选中的那一项。</p>
-  <p id="decor-palette-hsl" class="muted" data-field="hsl">hsl(32, 90%, 58%)</p>
+  <h2>官方风格预设</h2>
+  <div class="decor-presets diy-presets" id="diy-preset-list">
+    <button type="button" class="decor-preset diy-preset is-on" data-preset="original" id="diy-preset-original">温暖小家</button>
+    <button type="button" class="decor-preset diy-preset" data-preset="vintage" id="diy-preset-vintage">欧式复古</button>
+    <button type="button" class="decor-preset diy-preset" data-preset="modern" id="diy-preset-modern">欧式现代</button>
+    <button type="button" class="decor-preset diy-preset" data-preset="country" id="diy-preset-country">田园风</button>
+    <button type="button" class="decor-preset diy-preset" data-preset="chinese" id="diy-preset-chinese">中式现代</button>
+    <button type="button" class="decor-preset diy-preset" data-preset="palace" id="diy-preset-palace">故宫风</button>
+    <button type="button" class="decor-preset diy-preset" data-preset="morbid" id="diy-preset-morbid">云朵甜梦</button>
+  </div>
+
+  <h2>九色</h2>
+  <div id="diy-colors" class="diy-colors">
+    <label>背景 <input data-color="background" type="color" value="#fff7e5"><input data-color="background" type="text" class="diy-hex" maxlength="7" value="#fff7e5"></label>
+    <label>按键 <input data-color="button" type="color" value="#d39392"><input data-color="button" type="text" class="diy-hex" maxlength="7" value="#d39392"></label>
+    <label>描边 <input data-color="trim" type="color" value="#afbf87"><input data-color="trim" type="text" class="diy-hex" maxlength="7" value="#afbf87"></label>
+    <label>文字 <input data-color="text" type="color" value="#594332"><input data-color="text" type="text" class="diy-hex" maxlength="7" value="#594332"></label>
+    <label>卡片 <input data-color="card" type="color" value="#fffcf3"><input data-color="card" type="text" class="diy-hex" maxlength="7" value="#fffcf3"></label>
+    <label>菜单 <input data-color="menu" type="color" value="#fff7e5"><input data-color="menu" type="text" class="diy-hex" maxlength="7" value="#fff7e5"></label>
+    <label>心情条 <input data-color="bar0" type="color" value="#afbf87"><input data-color="bar0" type="text" class="diy-hex" maxlength="7" value="#afbf87"></label>
+    <label>饱食条 <input data-color="bar1" type="color" value="#afbf87"><input data-color="bar1" type="text" class="diy-hex" maxlength="7" value="#afbf87"></label>
+    <label>体力条 <input data-color="bar2" type="color" value="#afbf87"><input data-color="bar2" type="text" class="diy-hex" maxlength="7" value="#afbf87"></label>
+  </div>
+
+  <h2>按键配饰</h2>
+  <p class="hint">选择页脚按钮上的装饰样式，预览与设备画法一致。</p>
+  <div id="diy-ornaments" class="diy-ornaments">
+    <button type="button" class="diy-ornament is-on" data-ornament="original" id="diy-orn-original"><canvas width="200" height="80"></canvas><span>原版</span></button>
+    <button type="button" class="diy-ornament" data-ornament="kitty" id="diy-orn-kitty"><canvas width="200" height="80"></canvas><span>蝴蝶结</span></button>
+    <button type="button" class="diy-ornament" data-ornament="vintage" id="diy-orn-vintage"><canvas width="200" height="80"></canvas><span>复古十字</span></button>
+    <button type="button" class="diy-ornament" data-ornament="modern" id="diy-orn-modern"><canvas width="200" height="80"></canvas><span>现代叶</span></button>
+    <button type="button" class="diy-ornament" data-ornament="country" id="diy-orn-country"><canvas width="200" height="80"></canvas><span>田园花</span></button>
+    <button type="button" class="diy-ornament" data-ornament="chinese" id="diy-orn-chinese"><canvas width="200" height="80"></canvas><span>中式云</span></button>
+    <button type="button" class="diy-ornament" data-ornament="palace" id="diy-orn-palace"><canvas width="200" height="80"></canvas><span>故宫云</span></button>
+  </div>
   <div class="row">
-    <button type="button" id="decor-btn-palette-reset" class="ghost" data-action="palette-reset">恢复预设</button>
-    <button type="button" id="decor-btn-palette-done" data-go="panel-decor-edit">完成，回到布置</button>
+    <button type="button" id="diy-btn-export" data-go="panel-decor-export">去导出</button>
   </div>
+
 </section>
 
 <section id="panel-decor-export" class="panel" hidden data-screen="export">
@@ -556,9 +334,9 @@
     </svg>
   </div>
   <h2>打包带走</h2>
-  <p>把已导入的墙纸、地板、家具和风格配色打成一个家装包（含清单和 SHA256）。安装时不会改动已拥有的家具、节日或限定款、存档和金币。</p>
+  <p>把三张房间图、九色配色和按键配饰打成一个 DIY 家装包（含清单和 SHA256）。传到设备后会装进下一个空闲的 DIY 家装位。不会改已购买、节日或限定家装，也不会改存档和金币。</p>
   <label>家装包名称
-    <input id="decor-pack-name" type="text" maxlength="32" placeholder="例如：我的小窝" autocomplete="off">
+    <input id="decor-pack-name" type="text" maxlength="32" placeholder="例如：暖暖家" maxlength="24" autocomplete="off">
   </label>
   <p id="decor-export-status" class="muted" data-field="export-status" hidden></p>
   <div class="row">

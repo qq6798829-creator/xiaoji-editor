@@ -632,3 +632,69 @@
     animation: none !important;
   }
 }
+
+/* ---- DIY 家装套装：结构样式，待小杰视觉打磨 ---- */
+.diy-set-list { display: flex; flex-direction: column; gap: 12px; margin: 8px 0 16px; }
+.diy-set-card {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 14px; border: 2.4px solid #171615; border-radius: 18px;
+  background: #fff8e8; color: inherit; text-align: left;
+}
+.diy-set-card.is-on { background: #ffe7b8; }
+.diy-set-card strong { font-size: 18px; }
+.diy-thumbs { display: flex; gap: 8px; }
+.diy-thumb {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;
+  font-size: 12px; min-height: 48px; background: #fff3d6; border-radius: 12px;
+  border: 1.6px solid #171615; padding: 4px; overflow: hidden;
+}
+.diy-thumb canvas { width: 100%; height: auto; border-radius: 8px; display: block; }
+.diy-thumb em { font-style: normal; font-size: 11px; }
+.diy-set-actions { display: flex; gap: 8px; }
+.diy-set-actions button { flex: 1; }
+
+.diy-rooms { display: flex; flex-direction: column; gap: 12px; margin: 8px 0 16px; }
+.diy-room {
+  display: grid; grid-template-columns: 120px 1fr; grid-template-rows: auto auto auto;
+  gap: 6px 12px; padding: 12px; border: 2.4px solid #171615; border-radius: 18px;
+  background: #fff8e8; align-items: center;
+}
+.diy-room.is-on { background: #ffe7b8; }
+.diy-room strong { grid-column: 2; grid-row: 1; }
+.diy-room canvas {
+  grid-column: 1; grid-row: 1 / span 3; width: 120px; height: 120px;
+  border-radius: 16px; border: 1.8px solid #171615; background: #fff3d6;
+}
+.diy-room-status { grid-column: 2; grid-row: 2; font-size: 13px; line-height: 1.4; }
+.diy-room-file { grid-column: 2; grid-row: 3; width: 100%; }
+.diy-room-clear { grid-column: 2; justify-self: start; }
+
+.diy-colors { display: flex; flex-direction: column; gap: 8px; margin: 8px 0 16px; }
+.diy-colors label {
+  display: grid; grid-template-columns: 5em 48px 1fr; gap: 8px; align-items: center;
+  font-size: 15px;
+}
+.diy-colors input[type=color] {
+  width: 48px; height: 36px; padding: 0; border: 1.8px solid #171615; border-radius: 8px;
+  background: transparent;
+}
+.diy-hex { font-family: ui-monospace, monospace; }
+
+.diy-ornaments {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 8px 0 16px;
+}
+.diy-ornament {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 8px; border: 2.4px solid #171615; border-radius: 16px; background: #fff8e8;
+  color: inherit;
+}
+.diy-ornament.is-on { background: #ffe7b8; }
+.diy-ornament canvas { width: 100%; height: auto; border-radius: 10px; display: block; }
+
+.decor-stage-hint { text-align: center; margin-top: 8px; }
+#diy-name-err:not([hidden]) { color: #b25d4f; }
+#diy-empty { padding: 12px 4px; }
+
+@media (max-width: 400px) {
+  .diy-ornaments { grid-template-columns: 1fr; }
+}
