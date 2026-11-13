@@ -1,13 +1,6 @@
-/* 小吉家装编辑器 · 外观扩展
-   在现有 styles.css（可爱深色纸纹主题）之后加载。
-   只新增 decor- / panel-hub / panel-decor-* 规则，不改动现有选择器的含义，
-   不覆盖 #stage、#panel-home、现有 nav 按钮图标等。 */
-
-:root {
-  --decor-h: 32;
-  --decor-s: 80%;
-  --decor-l: 56%;
-}
+/* 小吉家装编辑器 · 外观（可爱深色纸纹主题的扩展）
+   在现有 styles.css 之后加载。只覆盖 decor- / diy- / panel-hub / panel-decor-* ，
+   不改动 #stage、#panel-home、原 nav 图标等选择器的含义。 */
 
 /* —— 入口大卡片 —— */
 .decor-hero {
@@ -77,11 +70,9 @@
 }
 #decor-choice-decor > span { color: #2a3a44; }
 
-.decor-hub-note {
-  text-align: center;
-}
+.decor-hub-note { text-align: center; }
 
-/* —— 内页顶栏（比完整页头更省高度） —— */
+/* —— 内页顶栏 —— */
 .decor-topbar {
   display: grid;
   grid-template-columns: 72px 1fr 72px;
@@ -121,340 +112,83 @@
   overflow: visible;
 }
 
-/* —— 房间选择 —— */
-.decor-scene-list {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin: 0.7rem 0 1.2rem;
-}
-
-.decor-scene-card {
-  display: grid;
-  grid-template-columns: 118px 1fr;
-  grid-template-rows: auto auto;
-  column-gap: 12px;
-  align-items: center;
-  width: 100%;
-  min-height: 120px;
-  padding: 12px 14px;
-  text-align: left;
-  background: var(--card);
-  color: var(--ink);
-  border: 2.5px solid var(--btn-ink);
-  border-radius: 24px;
-  box-shadow: 5px 5px 0 var(--shadow);
-}
-
-.decor-scene-card .decor-scene-illu {
-  grid-row: 1 / span 2;
-  width: 118px;
-  height: 104px;
-  display: block;
-}
-
-.decor-scene-card strong {
-  font-size: 1.28rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-}
-
-.decor-scene-card > span:last-child {
-  color: var(--muted);
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.decor-scene-card:active {
-  transform: translate(3px, 3px);
-  box-shadow: 2px 2px 0 var(--shadow);
-}
-
-.decor-scene-card.is-on,
-.decor-scene-card[aria-pressed="true"] {
-  outline: 3px solid var(--yellow);
-  outline-offset: 2px;
-}
-
-#decor-scene-living { box-shadow: 5px 5px 0 var(--orange); }
-#decor-scene-bath   { box-shadow: 5px 5px 0 var(--blue); }
-#decor-scene-sleep  { box-shadow: 5px 5px 0 var(--pink); }
-
-.decor-scene-badge {
-  text-align: center;
-  margin: 0 0 0.7rem;
-  font-weight: 700;
-}
-
-/* 占位标记：明确告诉后续对接，文案/数值待固件核对 */
-.decor-placeholder-tag {
-  display: inline-block;
-  margin-left: 6px;
-  padding: 1px 8px;
-  border-radius: 999px;
-  background: var(--orange);
-  color: var(--btn-ink);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  border: 2px solid var(--btn-ink);
-  vertical-align: middle;
-}
-
-/* —— 360 圆屏预览 —— */
+/* —— 360 圆屏预览 ——
+   固件把方图铺满整个圆，能量条贴在圆内左/右/上，返回键也按设备几何绘制。
+   因此 #decor-stage / #decor-palette-stage 本身：无边框、无内边距、不改内部布局，
+   也不加会裁切内容的 border-radius / overflow。装饰只画在外层包装上。
+   提示文案 .decor-stage-hint 写在 wrap 里、画布下面，wrap 不能 overflow:hidden。 */
 .decor-stage-wrap {
+  --stage-ring: 13px;
   position: relative;
   display: block;
-  width: min(100%, 360px);
+  width: min(100%, calc(360px + 2 * var(--stage-ring)));
+  margin: 8px auto 16px;
+  padding: var(--stage-ring);
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+/* 画布本身：填满包装的内容盒，零边框零内边距，不改内部几何 */
+#decor-stage,
+#decor-palette-stage {
+  display: block;
+  width: 100%;
+  height: auto;
   aspect-ratio: 1;
-  margin: 8px auto 12px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+  touch-action: none;
+  vertical-align: top;
+}
+
+/* 糖果色环：绝对定位在画布外围（与画布同大的圆），只靠向外的 box-shadow，
+   伪元素本身透明、不拦截指针，不覆盖圆内像素。 */
+.decor-stage-wrap::after {
+  content: "";
+  position: absolute;
+  top: var(--stage-ring);
+  left: var(--stage-ring);
+  right: var(--stage-ring);
+  aspect-ratio: 1;
+  width: auto;
   border-radius: 50%;
-  overflow: hidden;
-  background: #2a241c;
+  pointer-events: none;
+  background: transparent;
   box-shadow:
     0 0 0 5px var(--yellow),
     0 0 0 9px var(--bg),
     0 0 0 13px var(--pink),
     6px 8px 0 var(--shadow);
-  touch-action: none;
+  z-index: 1;
 }
 
-#decor-stage,
-#decor-palette-stage {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  display: block;
-}
-
-.decor-stage-placeholder {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-.decor-stage-placeholder svg {
-  width: 92%;
-  height: 92%;
-}
-
-/* 风格配色实时预览层：JS 改 --decor-h/s/l 即可 */
-.decor-stage-wash {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  pointer-events: none;
-  background: hsl(var(--decor-h), var(--decor-s), var(--decor-l));
-  mix-blend-mode: soft-light;
-  opacity: 0.55;
-}
-
-#decor-stage-caption {
-  text-align: center;
-}
-
-/* 按场景切换占位插画：JS 设置 wrap 的 data-scene */
-.decor-stage-placeholder [data-illu] { display: none; }
-.decor-stage-wrap[data-scene="living"] [data-illu="living"],
-.decor-stage-wrap[data-scene="bath"]   [data-illu="bath"],
-.decor-stage-wrap[data-scene="sleep"]  [data-illu="sleep"] {
-  display: block;
-}
-
-/* —— 槽位卡片 —— */
-#decor-slot-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin: 0.5rem 0 1.2rem;
-}
-
-.decor-slot {
-  background: var(--card);
-  border: 2.5px solid var(--line);
-  border-radius: 22px;
-  padding: 14px 14px 12px;
-  box-shadow: 4px 4px 0 var(--shadow);
-}
-
-.decor-slot-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 6px;
-}
-
-.decor-slot-name {
-  margin: 0;
-  font-size: 1.08rem;
-  font-weight: 800;
-  color: var(--cream);
-  width: auto;
-}
-
-.decor-slot-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 10px;
-  margin: 0 0 10px;
-  padding: 0;
-  list-style: none;
-  font-size: 0.88rem;
-  color: var(--muted);
-  font-weight: 600;
-}
-
-.decor-slot-meta li {
-  background: var(--bg-elev);
-  border: 2px solid var(--line);
-  border-radius: 999px;
-  padding: 4px 10px;
-  min-height: 28px;
-}
-
-.decor-slot-meta strong {
-  color: var(--ink);
-  font-weight: 800;
-}
-
-.decor-slot-body {
-  display: grid;
-  grid-template-columns: 92px 1fr;
-  gap: 10px 12px;
-  align-items: center;
-}
-
-.decor-slot-thumb {
-  width: 92px;
-  height: 92px;
-  border-radius: 18px;
-  border: 2.5px dashed var(--line);
-  background: var(--bg-elev);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+.decor-stage-hint {
   position: relative;
-}
-.decor-slot-thumb img,
-.decor-slot-thumb svg,
-.decor-slot-thumb canvas {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  text-align: center;
+  margin: 16px 8px 4px;
+  font-weight: 600;
+  z-index: 2;
 }
 
-.decor-slot-status {
-  margin: 0;
-  font-weight: 700;
-  font-size: 0.92rem;
-  color: var(--muted);
-}
-
-.decor-slot-warn {
-  grid-column: 1 / -1;
-  margin: 0;
-  padding: 10px 12px;
-  border-radius: 14px;
-  background: var(--orange);
-  color: var(--btn-ink);
-  font-weight: 800;
-  font-size: 0.9rem;
-  border: 2.5px solid var(--btn-ink);
-  display: none;
-}
-
-.decor-slot-actions {
-  grid-column: 1 / -1;
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 2px;
-}
-.decor-slot-actions .file,
-.decor-slot-actions button {
-  flex: 1;
-  min-width: 124px;
-  min-height: 48px;
-}
-
-.decor-import-text-filled { display: none; }
-.decor-import-text-empty  { display: inline; }
-
-/* 状态：空 */
-.decor-slot.is-empty {
-  border-style: dashed;
-}
-.decor-slot.is-empty .decor-slot-thumb {
-  /* 空缩略图里的「加号」用伪元素，JS 填入真实缩略图后请去掉 is-empty */
-}
-.decor-slot.is-empty .decor-slot-autocrop {
-  opacity: 0.55;
-}
-
-/* 状态：已导入且尺寸 OK */
-.decor-slot.is-ok {
-  border-color: var(--green);
-  box-shadow: 4px 4px 0 #1a3a0a;
-}
-.decor-slot.is-ok .decor-slot-thumb {
-  border-style: solid;
-  border-color: var(--green);
-}
-.decor-slot.is-ok .decor-slot-status {
-  color: var(--green);
-}
-.decor-slot.is-ok .decor-import-text-filled { display: inline; }
-.decor-slot.is-ok .decor-import-text-empty  { display: none; }
-
-/* 状态：已导入但尺寸不符 */
-.decor-slot.is-warn {
-  border-color: var(--orange);
-  box-shadow: 4px 4px 0 #4a2208;
-}
-.decor-slot.is-warn .decor-slot-thumb {
-  border-style: solid;
-  border-color: var(--orange);
-}
-.decor-slot.is-warn .decor-slot-warn {
-  display: block;
-}
-.decor-slot.is-warn .decor-slot-autocrop {
-  background: var(--yellow);
-  color: var(--btn-ink);
-  border-color: var(--btn-ink);
-  font-weight: 800;
-}
-.decor-slot.is-warn .decor-import-text-filled { display: inline; }
-.decor-slot.is-warn .decor-import-text-empty  { display: none; }
-
-/* 透明要求药丸 */
-.decor-alpha-yes {
-  color: var(--btn-ink);
-  background: var(--pink) !important;
-  border-color: var(--btn-ink) !important;
-}
-.decor-alpha-no {
-  color: var(--btn-ink);
-  background: var(--blue) !important;
-  border-color: var(--btn-ink) !important;
-}
-
-/* —— 风格配色 —— */
-.decor-presets {
+/* —— 风格预设（正式 7 个官方风格，class 保持 .decor-preset） —— */
+.decor-presets,
+.diy-presets {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin: 0.5rem 0 1rem;
 }
 
-.decor-preset {
+.decor-preset,
+.diy-preset {
   min-height: 44px;
   padding: 8px 14px 8px 12px;
   border-radius: 999px;
@@ -468,55 +202,39 @@
   gap: 8px;
 }
 
-.decor-preset-swatch {
-  width: 18px;
-  height: 18px;
+.decor-preset::before,
+.diy-preset::before {
+  content: "";
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   border: 2px solid var(--btn-ink);
-  flex: 0 0 18px;
+  flex: 0 0 16px;
+  background: var(--cream);
 }
 
+#diy-preset-original::before { background: #d39392; }
+#diy-preset-vintage::before  { background: #c9a36a; }
+#diy-preset-modern::before   { background: #788c83; }
+#diy-preset-country::before  { background: #8ea573; }
+#diy-preset-chinese::before  { background: #7c9d94; }
+#diy-preset-palace::before   { background: #b25d4f; }
+#diy-preset-morbid::before   { background: #f1d5e9; }
+
 .decor-preset.is-on,
+.diy-preset.is-on,
 .decor-preset[aria-pressed="true"] {
   background: var(--yellow);
   color: var(--btn-ink);
 }
 
-.decor-preset:active {
+.decor-preset:active,
+.diy-preset:active {
   transform: translate(2px, 2px);
   box-shadow: 1px 1px 0 var(--shadow);
 }
 
-#decor-palette-values {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin: 0.3rem 0 0.8rem;
-  font-weight: 700;
-  color: var(--muted);
-  font-size: 0.88rem;
-}
-
-.decor-live-chip {
-  background: var(--yellow);
-  color: var(--btn-ink);
-  border: 2px solid var(--btn-ink);
-  border-radius: 999px;
-  padding: 2px 10px;
-  font-weight: 800;
-  font-size: 0.9rem;
-}
-
-/* 色相滑杆用彩虹轨道，覆盖本页这三个滑杆的 webkit / moz */
-#panel-decor-palette input[type="range"]#decor-hue::-webkit-slider-runnable-track,
-#panel-decor-palette input[type="range"]#decor-hue::-moz-range-track {
-  background: linear-gradient(90deg,
-    hsl(0, 90%, 55%), hsl(60, 90%, 55%), hsl(120, 90%, 45%),
-    hsl(180, 90%, 45%), hsl(240, 90%, 58%), hsl(300, 90%, 55%), hsl(360, 90%, 55%));
-}
-
-#decor-palette-note { margin-top: 0.4rem; }
+#decor-palette-intro { margin-bottom: 0.7rem; }
 
 /* —— 导出页 —— */
 .decor-export-hero {
@@ -549,64 +267,524 @@
   min-height: 52px;
 }
 
-.decor-export-steps {
-  margin: 0.8rem 0;
+.decor-export-steps { margin: 0.8rem 0; }
+
+#diy-btn-export,
+#diy-btn-palette {
+  width: 100%;
+  min-height: 50px;
+  font-weight: 800;
+}
+#diy-btn-palette { background: var(--green); color: var(--btn-ink); }
+#diy-btn-export  { background: var(--orange); color: var(--btn-ink); }
+
+/* ============================================================
+   我的 DIY 家装
+   JS 状态：.is-on（当前套装 / 当前房间 / 选中预设 / 选中配饰）、
+   #diy-name-err 的 hidden、.diy-thumb[data-has="0|1"]。
+   没有 has-image / error / selected 类名。
+   ============================================================ */
+
+/* 套装列表 */
+.diy-set-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0.7rem 0 1rem;
+  min-height: 80px;
 }
 
-/* —— 演示用底栏：5 项，不影响正式页的 4 项 nav 图标规则 —— */
-#decor-demo-nav button {
-  max-width: none;
-  font-size: 0.7rem;
-  padding: 6px 2px 8px;
+.diy-set-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 14px 12px;
+  text-align: left;
+  background: var(--card);
+  color: var(--ink);
+  border: 2.5px solid var(--btn-ink);
+  border-radius: 24px;
+  box-shadow: 5px 5px 0 var(--shadow);
 }
 
-#decor-demo-nav button[data-go="panel-hub"] {
-  --nav-ico: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='8' fill='black'/></svg>");
-}
-#decor-demo-nav button[data-go="panel-decor-scenes"] {
-  --nav-ico: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='3' y='10' width='18' height='11' rx='2' fill='black'/><path d='M3 11 12 4l9 7' fill='black'/></svg>");
-}
-#decor-demo-nav button[data-go="panel-decor-edit"] {
-  --nav-ico: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='3' y='5' width='18' height='4' rx='2' fill='black'/><rect x='3' y='11' width='13' height='4' rx='2' fill='black'/><rect x='3' y='17' width='16' height='4' rx='2' fill='black'/></svg>");
-}
-#decor-demo-nav button[data-go="panel-decor-palette"] {
-  --nav-ico: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='8' cy='9' r='4' fill='black'/><circle cx='16' cy='8' r='3.2' fill='black'/><circle cx='13' cy='16' r='3.6' fill='black'/></svg>");
-}
-#decor-demo-nav button[data-go="panel-decor-export"] {
-  --nav-ico: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M11 3h2v8h3l-4 6-4-6h3V3zM4 18h16v3H4z'/></svg>");
+.diy-set-card.is-on {
+  background: var(--yellow);
+  color: var(--btn-ink);
+  box-shadow: 5px 5px 0 var(--shadow);
 }
 
-/* 演示页「角色接入说明」小面板 */
-#panel-role-stub {
+.diy-set-card strong {
+  font-size: 1.18rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: inherit;
+}
+
+.diy-thumbs {
+  display: flex;
+  gap: 8px;
+}
+
+.diy-thumb {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 88px;
+  min-width: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  background: var(--bg-elev);
+  border-radius: 16px;
+  border: 2px dashed var(--line);
+  padding: 6px;
+  overflow: hidden;
   text-align: center;
+  line-height: 1.25;
 }
-#panel-role-stub .ui-block { padding-top: 18px; padding-bottom: 22px; }
+
+.diy-thumb[data-has="1"] {
+  border-style: solid;
+  border-color: var(--btn-ink);
+  background: var(--cream);
+  color: var(--btn-ink);
+  padding: 4px;
+}
+
+.diy-thumb canvas {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  display: block;
+}
+
+.diy-thumb em {
+  font-style: normal;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.diy-set-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.diy-set-actions button {
+  flex: 1;
+  min-height: 48px;
+  font-weight: 800;
+}
+
+.diy-set-actions .diy-edit {
+  background: var(--green);
+  color: var(--btn-ink);
+  border: 2.5px solid var(--btn-ink);
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+
+/* 删除：明显是破坏性操作，但仍是可爱的粉色硬边按钮，不是冷冰冰的警告红 */
+.diy-set-actions .diy-del,
+.diy-set-actions button.ghost.diy-del {
+  background: var(--pink);
+  color: var(--btn-ink);
+  border: 2.5px solid var(--btn-ink);
+  box-shadow: 3px 3px 0 #5a1028;
+  font-weight: 800;
+}
+
+.diy-set-actions .diy-edit:active,
+.diy-set-actions .diy-del:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--shadow);
+}
+
+/* 新增一套 */
+#diy-btn-add {
+  width: 100%;
+  min-height: 52px;
+  background: var(--yellow);
+  color: var(--btn-ink);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+#diy-btn-add::before {
+  content: "+";
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: var(--btn-ink);
+  color: var(--yellow);
+  font-weight: 800;
+  font-size: 1.05rem;
+  line-height: 22px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* 空状态：JS 只写入一段文字，吉祥物用 ::before 画，避免改 HTML/JS */
+#diy-empty {
+  text-align: center;
+  padding: 24px 16px 22px;
+  margin: 0;
+  background: var(--bg-elev);
+  border: 2.5px dashed var(--line);
+  border-radius: 24px;
+  box-shadow: 5px 5px 0 var(--shadow);
+  font-weight: 700;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+#diy-empty::before {
+  content: "";
+  display: block;
+  width: 168px;
+  height: 130px;
+  margin: 2px auto 12px;
+  background: url("./icons/diy-empty.svg") center / contain no-repeat;
+  animation: bob 2.8s ease-in-out infinite;
+}
+
+/* 名称与错误 */
+#diy-set-name {
+  margin-top: 8px;
+}
+
+#diy-name-err:not([hidden]) {
+  color: var(--btn-ink);
+  background: var(--pink-2);
+  border: 2.5px solid var(--btn-ink);
+  border-radius: 16px;
+  padding: 10px 14px;
+  margin: 8px 0 12px;
+  font-weight: 800;
+  font-size: 0.92rem;
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+
+label:has(+ #diy-name-err:not([hidden])) #diy-set-name {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px var(--pink);
+}
+
+/* 三张房间导入卡 */
+.diy-rooms {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0.6rem 0 1rem;
+}
+
+.diy-room {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  grid-template-areas:
+    "thumb title title"
+    "thumb status status"
+    "thumb file  clear";
+  gap: 6px 12px;
+  align-items: center;
+  padding: 12px;
+  background: var(--card);
+  color: var(--ink);
+  border: 2.5px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 4px 4px 0 var(--shadow);
+  cursor: pointer;
+}
+
+.diy-room.is-on {
+  background: var(--yellow);
+  color: var(--btn-ink);
+  border-color: var(--btn-ink);
+  box-shadow: 4px 4px 0 var(--shadow);
+}
+
+.diy-room.is-on .diy-room-status { color: #4a4236; }
+
+.diy-room strong {
+  grid-area: title;
+  font-size: 1.08rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.diy-room canvas {
+  grid-area: thumb;
+  width: 120px;
+  height: 120px;
+  border-radius: 18px;
+  border: 2.5px solid var(--btn-ink);
+  background: var(--bg-elev);
+  display: block;
+}
+
+.diy-room-status {
+  grid-area: status;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* 原生文件框：把「选择文件」按钮做成主题黄按钮，整体至少 44px */
+.diy-room-file {
+  grid-area: file;
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  font-size: 16px;
+  color: var(--ink);
+  background: var(--bg-elev);
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  padding: 4px 4px 4px 4px;
+}
+
+.diy-room.is-on .diy-room-file {
+  background: #fff6d8;
+  border-color: var(--btn-ink);
+  color: var(--btn-ink);
+}
+
+.diy-room-file::file-selector-button,
+.diy-room-file::-webkit-file-upload-button {
+  min-height: 40px;
+  min-width: 84px;
+  margin-right: 8px;
+  padding: 8px 12px;
+  border: 2px solid var(--btn-ink);
+  border-radius: 12px;
+  background: var(--yellow);
+  color: var(--btn-ink);
+  font: 700 0.88rem/1 "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", "Noto Sans CJK SC", system-ui, sans-serif;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
+.diy-room-file::-moz-file-upload-button {
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 2px solid #171615;
+  border-radius: 12px;
+  background: #ffd12a;
+  color: #171615;
+  font-weight: 700;
+}
+
+.diy-room-clear {
+  grid-area: clear;
+  min-height: 48px;
+  min-width: 64px;
+  padding: 8px 12px;
+  justify-self: end;
+  background: transparent;
+  color: var(--pink-2);
+  border: 2.5px solid var(--pink);
+  box-shadow: 2px 2px 0 var(--shadow);
+  font-weight: 800;
+}
+
+.diy-room.is-on .diy-room-clear {
+  color: var(--btn-ink);
+  border-color: var(--btn-ink);
+  background: var(--pink);
+}
+
+/* 九色：一整块紧凑双列网格（不要拆成多段）。
+   覆盖 styles.css 里 label:has(> input[type=text]) 的 display:block / margin-top，
+   用更高优先级（#diy-colors + :has）。
+   官方预设 #diy-preset-list 在 HTML 里已经位于九色网格之上，无需 order。 */
+#diy-colors.diy-colors,
+#diy-colors {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 8px;
+  margin: 0.55rem 0 1.1rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+#diy-colors label,
+#diy-colors label:has(> input[type="text"]) {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  gap: 4px 8px;
+  margin: 0;
+  min-height: 56px;
+  padding: 8px;
+  background: var(--card);
+  border: 2.5px solid var(--line);
+  border-radius: 16px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  box-shadow: 3px 3px 0 var(--shadow);
+  color: var(--ink);
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+#diy-colors label:has(> input[type="text"]) input,
+#diy-colors label input {
+  display: block;
+  margin: 0;
+  margin-top: 0;
+}
+
+#diy-colors input[type="color"],
+#diy-colors label input[type="color"] {
+  -webkit-appearance: none;
+  appearance: none;
+  order: -1; /* 色块在名称左侧；HTML 里名称是匿名文本，在 color 之前 */
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 0;
+  border: 2.5px solid var(--btn-ink);
+  border-radius: 14px;
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
+#diy-colors input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+#diy-colors input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 11px;
+}
+#diy-colors input[type="color"]::-moz-color-swatch {
+  border: none;
+  border-radius: 11px;
+}
+
+#diy-colors .diy-hex,
+#diy-colors label input[type="text"].diy-hex,
+#diy-colors label input.diy-hex {
+  flex: 1 1 100%;
+  order: 1;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-height: 44px;
+  font-size: 16px; /* 避免 iOS 缩放 */
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 6px 8px;
+  border: 2.5px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-elev);
+  color: var(--ink);
+}
+
+#diy-colors .diy-hex:focus,
+#diy-colors label input.diy-hex:focus {
+  border-color: var(--yellow);
+  outline: none;
+}
+
+/* 按键配饰：画布是页脚按钮预览（JS 绘制） */
+.diy-ornaments {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 0.6rem 0 1.1rem;
+}
+
+.diy-ornament {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-height: 88px;
+  padding: 10px 8px 10px;
+  border: 2.5px solid var(--line);
+  border-radius: 18px;
+  background: var(--card);
+  color: var(--ink);
+  font-weight: 800;
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+
+.diy-ornament.is-on {
+  background: var(--yellow);
+  color: var(--btn-ink);
+  border-color: var(--btn-ink);
+}
+
+.diy-ornament canvas {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 200 / 80;
+  border-radius: 12px;
+  display: block;
+  background: var(--cream);
+  border: 2px solid var(--btn-ink);
+}
+
+.diy-ornament span {
+  font-size: 0.88rem;
+  letter-spacing: 0.03em;
+}
+
+.diy-ornament:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--shadow);
+}
 
 /* 窄屏 */
 @media (max-width: 360px) {
-  .decor-scene-card {
-    grid-template-columns: 96px 1fr;
-    column-gap: 10px;
-    padding: 10px 12px;
-  }
-  .decor-scene-card .decor-scene-illu {
-    width: 96px;
-    height: 90px;
-  }
   .decor-choice { min-height: 156px; padding: 14px 12px 16px; }
   .decor-choice .decor-choice-illu { width: 104px; height: 88px; }
-  .decor-slot-thumb { width: 80px; height: 80px; }
-  .decor-slot-body { grid-template-columns: 80px 1fr; }
-  .decor-slot-actions .file,
-  .decor-slot-actions button { min-width: 116px; }
-  #decor-demo-nav button { font-size: 0.64rem; }
-  .decor-stage-wrap {
+  .diy-room {
+    grid-template-columns: 96px 1fr;
+    grid-template-areas:
+      "thumb title"
+      "thumb status"
+      "file  file"
+      "clear clear";
+    gap: 8px;
+  }
+  .diy-room canvas { width: 96px; height: 96px; }
+  .diy-room-clear { justify-self: stretch; width: 100%; }
+  #diy-colors { gap: 6px; }
+  #diy-colors label,
+  #diy-colors label:has(> input[type="text"]) { padding: 5px 6px; gap: 4px; min-height: 52px; }
+  #diy-colors input[type="color"],
+  #diy-colors label input[type="color"] { width: 44px; height: 44px; min-width: 44px; min-height: 44px; flex-basis: 44px; }
+  .decor-stage-wrap { --stage-ring: 10px; }
+  .decor-stage-wrap::after {
     box-shadow:
       0 0 0 4px var(--yellow),
       0 0 0 7px var(--bg),
       0 0 0 10px var(--pink),
       4px 6px 0 var(--shadow);
   }
+}
+
+@media (max-width: 400px) {
+  /* 375 仍用双列；更窄时配饰单列更从容。320 也还能双列，这里不强制。 */
 }
 
 @media (max-height: 700px) {
@@ -624,77 +802,134 @@
   #decor-palette-intro { margin-bottom: 0.35rem; font-size: 0.86rem; }
 }
 
+
+/* —— 底栏「首页」：原创小屋图标 ——
+   当前 HTML 仍是 <button data-go="panel-home">导入</button>。
+   换成首页的步骤见 README_CN.md：把文案改成「首页」，把 data-go 改成 panel-hub
+   （打开角色/家装选择页）。本样式同时匹配两个 data-go，替换后图标仍然生效。
+   不要改按钮的 id（目前没有 id）。 */
+nav button[data-go="panel-home"],
+nav button[data-go="panel-hub"] {
+  /* 原创小屋剪影：圆顶、烟囱、圆窗、拱门。用作 mask，颜色跟随 currentColor。 */
+  --nav-ico: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M16.2 3.2h2.8c.5 0 .9.4.9.9v4.2h-2.2V5.4h-1.5z'/><path fill='black' fill-rule='evenodd' d='M12 2.4L2.6 11.1c-.4.3-.1 1.1.5 1.1h1.6V21c0 .6.4 1 1 1h12.6c.6 0 1-.4 1-1v-8.8h1.6c.6 0 .9-.8.5-1.1L12 2.4zM9.2 13.2a2.3 2.3 0 1 1 5.6 0 2.3 2.3 0 0 1-5.6 0zM10.4 18.2h3.2c.6 0 1 .4 1 1.1V22h-5.2v-2.7c0-.7.4-1.1 1-1.1z'/></svg>");
+}
+
 @media (prefers-reduced-motion: reduce) {
   .decor-export-hero svg,
   .decor-choice,
-  .decor-scene-card,
-  .decor-preset {
+  .decor-preset,
+  .diy-preset,
+  .diy-ornament,
+  #diy-empty::before,
+  .diy-set-actions .diy-edit,
+  .diy-set-actions .diy-del {
     animation: none !important;
+  }
+  .decor-choice:active,
+  .decor-preset:active,
+  .diy-ornament:active,
+  .diy-set-actions .diy-edit:active,
+  .diy-set-actions .diy-del:active {
+    transform: none;
   }
 }
 
-/* ---- DIY 家装套装：结构样式，待小杰视觉打磨 ---- */
-.diy-set-list { display: flex; flex-direction: column; gap: 12px; margin: 8px 0 16px; }
-.diy-set-card {
-  display: flex; flex-direction: column; gap: 8px;
-  padding: 14px; border: 2.4px solid #171615; border-radius: 18px;
-  background: #fff8e8; color: inherit; text-align: left;
-}
-.diy-set-card.is-on { background: #ffe7b8; }
-.diy-set-card strong { font-size: 18px; }
-.diy-thumbs { display: flex; gap: 8px; }
-.diy-thumb {
-  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;
-  font-size: 12px; min-height: 48px; background: #fff3d6; border-radius: 12px;
-  border: 1.6px solid #171615; padding: 4px; overflow: hidden;
-}
-.diy-thumb canvas { width: 100%; height: auto; border-radius: 8px; display: block; }
-.diy-thumb em { font-style: normal; font-size: 11px; }
-.diy-set-actions { display: flex; gap: 8px; }
-.diy-set-actions button { flex: 1; }
 
-.diy-rooms { display: flex; flex-direction: column; gap: 12px; margin: 8px 0 16px; }
-.diy-room {
-  display: grid; grid-template-columns: 120px 1fr; grid-template-rows: auto auto auto;
-  gap: 6px 12px; padding: 12px; border: 2.4px solid #171615; border-radius: 18px;
-  background: #fff8e8; align-items: center;
-}
-.diy-room.is-on { background: #ffe7b8; }
-.diy-room strong { grid-column: 2; grid-row: 1; }
-.diy-room canvas {
-  grid-column: 1; grid-row: 1 / span 3; width: 120px; height: 120px;
-  border-radius: 16px; border: 1.8px solid #171615; background: #fff3d6;
-}
-.diy-room-status { grid-column: 2; grid-row: 2; font-size: 13px; line-height: 1.4; }
-.diy-room-file { grid-column: 2; grid-row: 3; width: 100%; }
-.diy-room-clear { grid-column: 2; justify-self: start; }
+/* ============================================================
+   合入补充（与现有 HTML 结构对齐，不改圆屏内部几何）
+   1) 原生 file input 已在 HTML 里换成 .diy-file / .diy-file-btn / .diy-file-name，
+      文案为「选择文件」+ 文件名；input 本身视觉隐藏，永不出现 “Choose File”。
+   2) 对比度锁：所有浅色底（黄 / 粉 / 奶油）使用 --btn-ink #171615，WCAG AA。
+      深色卡仍用 --ink。不把默认卡改回奶油底。
+   3) 不给 #decor-stage / #decor-palette-stage 加边框、内边距或裁切用的 radius。
+   ============================================================ */
 
-.diy-colors { display: flex; flex-direction: column; gap: 8px; margin: 8px 0 16px; }
-.diy-colors label {
-  display: grid; grid-template-columns: 5em 48px 1fr; gap: 8px; align-items: center;
-  font-size: 15px;
+/* 文件选择：占掉原 .diy-room-file 的 grid-area */
+.diy-file {
+  grid-area: file;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+  min-height: 48px;
 }
-.diy-colors input[type=color] {
-  width: 48px; height: 36px; padding: 0; border: 1.8px solid #171615; border-radius: 8px;
+/* 覆盖本文件里面向「可见原生 input」的规则，彻底藏起系统按钮 */
+.diy-file input[type="file"],
+.diy-room .diy-room-file,
+.diy-room.is-on .diy-room-file {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
   background: transparent;
+  min-height: 0;
+  min-width: 0;
+  opacity: 0;
+  pointer-events: none; /* 点击由外层 label.diy-room 触发 */
 }
-.diy-hex { font-family: ui-monospace, monospace; }
+.diy-file-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 84px;
+  padding: 8px 12px;
+  border: 2px solid var(--btn-ink);
+  border-radius: 12px;
+  background: var(--yellow);
+  color: var(--btn-ink);
+  font-weight: 800;
+  font-size: 0.88rem;
+  letter-spacing: 0.02em;
+  box-shadow: 2px 2px 0 var(--shadow);
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.2;
+}
+.diy-file-name {
+  font-size: 0.82rem;
+  line-height: 1.3;
+  font-weight: 700;
+  color: inherit; /* 深色卡继承 --ink，选中黄卡继承 --btn-ink */
+  word-break: break-all;
+}
+.diy-room.is-on .diy-file-name,
+.diy-room.is-on .diy-file-btn {
+  color: var(--btn-ink);
+}
 
-.diy-ornaments {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 8px 0 16px;
+@media (max-width: 360px) {
+  .diy-file { grid-area: file; }
 }
-.diy-ornament {
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
-  padding: 8px; border: 2.4px solid #171615; border-radius: 16px; background: #fff8e8;
-  color: inherit;
-}
-.diy-ornament.is-on { background: #ffe7b8; }
-.diy-ornament canvas { width: 100%; height: auto; border-radius: 10px; display: block; }
 
-.decor-stage-hint { text-align: center; margin-top: 8px; }
-#diy-name-err:not([hidden]) { color: #b25d4f; }
-#diy-empty { padding: 12px 4px; }
-
-@media (max-width: 400px) {
-  .diy-ornaments { grid-template-columns: 1fr; }
+/* 对比度锁：浅色底必须是深墨色（#171615 on yellow/pink/cream ≥ 10:1） */
+.diy-set-card.is-on,
+.diy-set-card.is-on strong,
+.diy-set-card.is-on .diy-thumb[data-has="1"],
+.diy-room.is-on,
+.diy-room.is-on strong,
+.diy-room.is-on .diy-room-status,
+.diy-room.is-on .diy-room-clear,
+.diy-ornament.is-on,
+.diy-ornament.is-on span,
+.diy-thumb[data-has="1"],
+.diy-thumb[data-has="1"] em,
+.diy-set-actions .diy-edit,
+.diy-set-actions .diy-del,
+.diy-set-actions button.ghost.diy-del,
+#diy-btn-add,
+#diy-name-err:not([hidden]),
+.diy-file-btn,
+.diy-room.is-on .diy-room-clear {
+  color: var(--btn-ink);
 }
+.diy-room.is-on .diy-room-status { color: #4a4236; } /* 在黄底上略柔和，仍 ≥ 7:1 */

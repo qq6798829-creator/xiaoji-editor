@@ -195,8 +195,8 @@
 
   <div class="decor-stage-wrap" id="decor-stage-wrap" data-scene="living">
     <canvas id="decor-stage" width="360" height="360" aria-label="家装圆屏预览"></canvas>
-    <p class="decor-stage-hint hint">预览已按 360×360 裁切。可在圆屏上拖动调整位置。</p>
   </div>
+  <p class="decor-stage-hint hint">预览与设备主页 1:1：房间图铺满 360×360 圆屏，无留白。可在圆屏上拖动调整位置。</p>
 
   <h2>三张房间图</h2>
   <p class="hint">需要恰好 360×360 的 PNG（设备用 XF02 不透明 fmt2）。其它尺寸会自动等比裁切填满。</p>
@@ -205,21 +205,33 @@
       <strong>客厅</strong>
       <canvas width="120" height="120" aria-hidden="true"></canvas>
       <span class="diy-room-status">需要 360×360，其他尺寸会自动裁切填满</span>
-      <input class="diy-room-file" type="file" accept="image/png,image/jpeg,.png,.jpg,.jpeg,.xf,image/*">
+      <span class="diy-file">
+        <input class="diy-room-file" type="file" accept="image/png,image/jpeg,.png,.jpg,.jpeg,.xf,image/*">
+        <span class="diy-file-btn">选择文件</span>
+        <span class="diy-file-name">未选择文件</span>
+      </span>
       <button type="button" class="ghost diy-room-clear">清除</button>
     </label>
     <label class="diy-room" data-room="bedroom" data-name="卧室">
       <strong>卧室</strong>
       <canvas width="120" height="120" aria-hidden="true"></canvas>
       <span class="diy-room-status">需要 360×360，其他尺寸会自动裁切填满</span>
-      <input class="diy-room-file" type="file" accept="image/png,image/jpeg,.png,.jpg,.jpeg,.xf,image/*">
+      <span class="diy-file">
+        <input class="diy-room-file" type="file" accept="image/png,image/jpeg,.png,.jpg,.jpeg,.xf,image/*">
+        <span class="diy-file-btn">选择文件</span>
+        <span class="diy-file-name">未选择文件</span>
+      </span>
       <button type="button" class="ghost diy-room-clear">清除</button>
     </label>
     <label class="diy-room" data-room="bathroom" data-name="浴室">
       <strong>浴室</strong>
       <canvas width="120" height="120" aria-hidden="true"></canvas>
       <span class="diy-room-status">需要 360×360，其他尺寸会自动裁切填满</span>
-      <input class="diy-room-file" type="file" accept="image/png,image/jpeg,.png,.jpg,.jpeg,.xf,image/*">
+      <span class="diy-file">
+        <input class="diy-room-file" type="file" accept="image/png,image/jpeg,.png,.jpg,.jpeg,.xf,image/*">
+        <span class="diy-file-btn">选择文件</span>
+        <span class="diy-file-name">未选择文件</span>
+      </span>
       <button type="button" class="ghost diy-room-clear">清除</button>
     </label>
   </div>
@@ -484,7 +496,7 @@
 </section>
 
 <nav>
-  <button data-go="panel-home">导入</button>
+  <button data-go="panel-hub">首页</button>
   <button data-go="panel-edit">编辑</button>
   <button data-go="panel-send">传到设备</button>
   <button data-go="panel-about">关于</button>

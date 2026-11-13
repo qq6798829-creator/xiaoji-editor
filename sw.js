@@ -1,5 +1,5 @@
-const CACHE = 'xiaoji-editor-v5';
-const ASSETS = ['./', './index.html', './app.min.css', './decor.css', './app.min.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './grain.png'];
+const CACHE = 'xiaoji-editor-v6';
+const ASSETS = ['./', './index.html', './app.min.css', './decor.css', './app.min.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/diy-empty.svg', './grain.png'];
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()));
 });
