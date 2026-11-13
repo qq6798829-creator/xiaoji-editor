@@ -1,0 +1,17 @@
+<svg class="decor-scene-illu" viewBox="0 0 118 104" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <rect x="2" y="2" width="114" height="100" rx="18" fill="#ffe7b8" stroke="#171615" stroke-width="2.4"/>
+  <rect x="2" y="68" width="114" height="34" rx="0" fill="#e8a04a"/>
+  <path d="M2 68 H116" stroke="#171615" stroke-width="2"/>
+  <ellipse cx="60" cy="86" rx="34" ry="9" fill="#8ad63f" stroke="#171615" stroke-width="2"/>
+  <rect x="18" y="48" width="82" height="34" rx="10" fill="#ff7a1a" stroke="#171615" stroke-width="2.3"/>
+  <rect x="26" y="54" width="28" height="16" rx="6" fill="#fff3d6" stroke="#171615" stroke-width="1.6"/>
+  <rect x="64" y="54" width="28" height="16" rx="6" fill="#fff3d6" stroke="#171615" stroke-width="1.6"/>
+  <ellipse class="ui-eye-w" cx="48" cy="44" rx="8" ry="10" fill="#fff" stroke="#171615" stroke-width="1.6"/>
+  <ellipse class="ui-eye-w d2" cx="70" cy="44" rx="8" ry="10" fill="#fff" stroke="#171615" stroke-width="1.6"/>
+  <circle cx="50.5" cy="46" r="3.4" fill="#171615"/>
+  <circle cx="72" cy="43" r="3.4" fill="#171615"/>
+  <rect x="8" y="14" width="22" height="22" rx="6" fill="#6ec6ee" stroke="#171615" stroke-width="2"/>
+  <path d="M8 25 H30 M19 14 V36" stroke="#171615" stroke-width="1.5"/>
+  <circle cx="100" cy="26" r="10" fill="#ffd12a" stroke="#171615" stroke-width="2"/>
+  <rect x="97" y="36" width="6" height="10" fill="#171615"/>
+</svg>
