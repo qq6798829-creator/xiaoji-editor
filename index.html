@@ -382,7 +382,7 @@
     <input id="png-import-camera" class="png-import-input" type="file" accept="image/*" capture="environment" tabindex="-1" aria-hidden="true">
     <input id="png-import-album" class="png-import-input" type="file" accept="image/*,.xf,.xfa" multiple tabindex="-1" aria-hidden="true">
     <input id="png-import-folder" class="png-import-input" type="file" multiple tabindex="-1" aria-hidden="true">
-    <input id="png-import-zip" class="png-import-input" type="file" accept=".zip,application/zip,application/x-zip-compressed" tabindex="-1" aria-hidden="true">
+    <input id="png-import-zip" class="png-import-input" type="file" accept=".zip,application/zip,application/x-zip-compressed,application/x-zip" tabindex="-1" aria-hidden="true">
   </div>
   <div class="ui-block">
     <h2>当前角色</h2>
@@ -547,7 +547,7 @@
     <button type="button" data-png-src="camera">拍照</button>
     <button type="button" data-png-src="album">从相册选择</button>
     <button type="button" data-png-src="folder">导入文件夹</button>
-    <p class="png-sheet-hint" id="png-folder-hint" hidden>这台浏览器不能选整个文件夹，将打开文件应用，请多选 PNG。也可以改用下面的压缩包。</p>
+    <p class="png-sheet-hint" id="png-folder-hint" hidden>手机浏览器不能选整个文件夹：请在「文件」里一次多选 PNG 图片，或用下面的压缩包。</p>
     <button type="button" data-png-src="zip">导入压缩包（zip）</button>
     <button type="button" class="png-sheet-cancel" data-png-src="cancel">取消</button>
   </div>
