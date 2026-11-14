@@ -465,8 +465,18 @@
     </svg>
   </div>
   <h2>传到设备</h2>
-  <p>分三步把刚做好的包传到设备：先存到手机，再打开设备页，最后选这个文件。</p>
-  <ol class="send-steps">
+  <p id="send-intro">分三步把刚做好的包传到设备：先存到手机，再打开设备页，最后选这个文件。</p>
+  <div id="send-direct" class="send-direct" hidden>
+    <p>这个页面就是设备自己提供的，可以直接传，不用先存到手机。</p>
+    <p id="direct-pack-summary">还没有可发送的包。请先在编辑页完成角色或家装。</p>
+    <label class="device-url-label" for="direct-code">配对码（看设备屏幕）</label>
+    <input id="direct-code" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="off" placeholder="6 位数字">
+    <button type="button" id="btn-direct-send" disabled>直接传到设备</button>
+    <div class="direct-bar" aria-hidden="true"><i id="direct-bar"></i></div>
+    <p id="direct-msg" class="hint" role="status" aria-live="polite"></p>
+    <p class="hint">已经存好的包？<a href="./upload">用设备上传页选文件</a></p>
+  </div>
+  <ol class="send-steps" id="send-steps">
     <li>
       <div class="send-step-head">
         <span class="send-step-badge" aria-hidden="true">1</span>
