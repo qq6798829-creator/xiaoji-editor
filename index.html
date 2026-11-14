@@ -356,14 +356,14 @@
   </div>
   <div class="ui-block decor-export-steps" id="decor-wireless-hint">
     <h2>用「无线传输」发到设备</h2>
-    <p>家装包会先下载到手机。和角色包一样：因为网页如果在 https 上，浏览器不能直接把文件发到设备的 http 地址，所以传输要由<strong>设备自己提供的上传页</strong>完成。</p>
+    <p>请先把家装包保存到手机，再到「传到设备」页按步骤打开设备上传页。因为网页若在 https 上，浏览器不能直接把文件发到设备的 http 地址。</p>
     <ol>
-      <li>在设备上打开 设置 → 无线传输，屏幕会显示地址和配对码。</li>
-      <li>把屏幕上的地址填到「传到设备」页的「设备地址」，再打开设备上传页（不要用 https）。</li>
-      <li>输入 6 位配对码，选择刚才保存的家装包，开始传输。</li>
+      <li>点「保存并传到设备」，把家装包存到手机（文件名会带时间，便于在选择器里排在最前）。</li>
+      <li>把设备屏幕上的数字填到「设备地址」（例如 192.168.1.23），打开设备上传页。</li>
+      <li>输入 6 位配对码，在「角色包或家装包」里选刚保存的那个文件，开始传输。</li>
     </ol>
-    <p class="hint">传输步骤与角色包相同。点下方按钮可查看完整的无线传输说明。</p>
-    <button type="button" id="decor-btn-wireless" data-go="panel-send" data-action="goto-wireless">查看无线传输说明</button>
+    <p class="hint">传输步骤与角色包相同。</p>
+    <button type="button" id="decor-btn-wireless" data-action="goto-wireless">保存并传到设备</button>
   </div>
 </section>
 
@@ -419,7 +419,9 @@
     </div>
     <h2>按场景审核大小与位置</h2>
     <div id="scene-list"></div>
-    <canvas id="stage" width="360" height="360" aria-label="场景预览"></canvas>
+    <div id="stage-wrap">
+      <canvas id="stage" width="360" height="360" aria-label="场景预览"></canvas>
+    </div>
     <p id="missing" hidden>缺少此场景动作，请补导入。不会借用其他角色的图片。</p>
     <p id="frame-info" class="muted"></p>
     <p id="inherit-note" class="hint"></p>
@@ -463,17 +465,32 @@
     </svg>
   </div>
   <h2>传到设备</h2>
-  <p>角色包或家装包已开始下载到手机。因为本编辑器如果放在 https 网站上，浏览器不允许直接把文件发到设备的 http 地址，所以传输由<strong>设备自己提供的上传页</strong>完成。</p>
-  <ol>
-    <li>在设备上打开 设置 → 无线传输，屏幕会显示地址和配对码。</li>
-    <li>把屏幕上的地址填到下面的「设备地址」（例如 http://10.0.0.12 或 http://xiaoji-ab12.local），不要用 https。</li>
-    <li>点「打开设备上传页」，在新标签里输入配对码，选择刚才保存的包，开始传输。</li>
-    <li>看到「安装完成」前，请不要关机或拔卡。失败会整包丢弃，原有角色、家装、存档和金币不动。</li>
+  <p>因为本编辑器若放在 https 网站上，浏览器不允许直接把文件发到设备的 http 地址，所以要先把包存到手机，再在<strong>设备自己提供的上传页</strong>里选这个文件。配对码页面不是本编辑器的一页，无法替你自动选中文件。</p>
+  <ol class="send-steps">
+    <li>
+      <strong>① 保存到手机</strong>
+      <p id="send-pack-summary">还没有可发送的包。请先在编辑页完成角色或家装，再回来保存。</p>
+      <button type="button" id="btn-save-pack">保存到手机</button>
+      <p id="send-saved-name" class="hint">尚未保存。请先点上面的按钮，把文件存到手机。</p>
+    </li>
+    <li>
+      <strong>② 打开设备页面、输入配对码</strong>
+      <p>在设备上打开 设置 → 无线传输，把屏幕上显示的数字填到下面（例如 192.168.1.23）。只填数字即可，不必写 http://。</p>
+      <label class="device-url-label" for="device-url">设备地址</label>
+      <div class="device-url-field" id="device-url-field">
+        <span class="device-url-prefix" aria-hidden="true">http://</span>
+        <input id="device-url" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off" placeholder="192.168.1.23" aria-describedby="device-url-err">
+      </div>
+      <p id="device-url-err" class="hint" hidden>请填写设备屏幕上显示的数字，例如 192.168.1.23。</p>
+      <button type="button" id="btn-open-device" disabled>打开设备上传页</button>
+    </li>
+    <li>
+      <strong>③ 在「角色包或家装包」里选刚保存的文件</strong>
+      <p id="send-pick-hint">保存后，这里会显示准确的文件名。请在设备页面里选这个文件，输入配对码，再开始传输。文件按时间命名，一般排在选择器最上面。</p>
+    </li>
   </ol>
-  <label>设备地址 <input id="device-url" type="text" inputmode="url" autocomplete="off" spellcheck="false" placeholder="把设备屏幕上的地址填到这里"></label>
-  <p id="device-url-err" class="hint" hidden>请填写设备屏幕上显示的地址，格式为 http://数字IP 或 http://名称.local。</p>
-  <button type="button" id="btn-open-device">打开设备上传页</button>
-  <p class="hint">手机请与设备使用同一家里 Wi-Fi。若还没有保存过 Wi-Fi，请先在设备设置里添加。没有可用 Wi-Fi 时，设备会改用热点，地址同样显示在屏幕上，把那个地址填进来即可。若手机提示热点无法上网，请选择继续保持连接。</p>
+  <p class="hint">看到「安装完成」前，请不要关机或拔卡。失败会整包丢弃，原有角色、家装、存档和金币不动。</p>
+  <p class="hint">手机请与设备使用同一家里 Wi-Fi。若还没有保存过 Wi-Fi，请先在设备设置里添加。没有可用 Wi-Fi 时，设备会改用热点，屏幕同样会显示数字地址。若手机提示热点无法上网，请选择继续保持连接。</p>
   <p class="hint">若角色位已满，设备会提示先删除。若没有勾选「替换」，不会覆盖该角色已有的位置和大小配置。</p>
 </section>
 

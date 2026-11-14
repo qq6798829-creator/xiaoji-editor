@@ -135,13 +135,17 @@
 #decor-stage,
 #decor-palette-stage {
   display: block;
+  position: relative;
+  z-index: 10000;
   width: 100%;
   height: auto;
   aspect-ratio: 1;
   margin: 0;
   padding: 0;
   border: 0;
-  border-radius: 0;
+  /* 只把圆形画面抬到纸纹之上；圆外四角仍露纸纹。不改变 360 画布内容几何。 */
+  border-radius: 50%;
+  overflow: hidden;
   background: transparent;
   box-shadow: none;
   outline: none;
