@@ -465,16 +465,22 @@
     </svg>
   </div>
   <h2>传到设备</h2>
-  <p>因为本编辑器若放在 https 网站上，浏览器不允许直接把文件发到设备的 http 地址，所以要先把包存到手机，再在<strong>设备自己提供的上传页</strong>里选这个文件。配对码页面不是本编辑器的一页，无法替你自动选中文件。</p>
+  <p>分三步把刚做好的包传到设备：先存到手机，再打开设备页，最后选这个文件。</p>
   <ol class="send-steps">
     <li>
-      <strong>① 保存到手机</strong>
+      <div class="send-step-head">
+        <span class="send-step-badge" aria-hidden="true">1</span>
+        <strong>保存到手机</strong>
+      </div>
       <p id="send-pack-summary">还没有可发送的包。请先在编辑页完成角色或家装，再回来保存。</p>
       <button type="button" id="btn-save-pack">保存到手机</button>
       <p id="send-saved-name" class="hint">尚未保存。请先点上面的按钮，把文件存到手机。</p>
     </li>
     <li>
-      <strong>② 打开设备页面、输入配对码</strong>
+      <div class="send-step-head">
+        <span class="send-step-badge" aria-hidden="true">2</span>
+        <strong>打开设备页面、输入配对码</strong>
+      </div>
       <p>在设备上打开 设置 → 无线传输，把屏幕上显示的数字填到下面（例如 192.168.1.23）。只填数字即可，不必写 http://。</p>
       <label class="device-url-label" for="device-url">设备地址</label>
       <div class="device-url-field" id="device-url-field">
@@ -485,7 +491,10 @@
       <button type="button" id="btn-open-device" disabled>打开设备上传页</button>
     </li>
     <li>
-      <strong>③ 在「角色包或家装包」里选刚保存的文件</strong>
+      <div class="send-step-head">
+        <span class="send-step-badge" aria-hidden="true">3</span>
+        <strong>在「角色包或家装包」里选刚保存的文件</strong>
+      </div>
       <p id="send-pick-hint">保存后，这里会显示准确的文件名。请在设备页面里选这个文件，输入配对码，再开始传输。文件按时间命名，一般排在选择器最上面。</p>
     </li>
   </ol>
