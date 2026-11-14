@@ -418,13 +418,21 @@
       <button id="btn-delete" class="ghost">删除并释放角色位</button>
     </div>
     <h2>按场景审核大小与位置</h2>
-    <div id="scene-list"></div>
+    <div class="scene-picker">
+      <label class="scene-picker-label" for="scene-select">场景 <span id="scene-pos" class="muted"></span></label>
+      <select id="scene-select" aria-label="选择场景"></select>
+      <div class="scene-nav">
+        <button type="button" id="btn-scene-prev" class="ghost">上一个场景</button>
+        <button type="button" id="btn-scene-next" class="ghost">下一个场景</button>
+      </div>
+    </div>
     <div id="stage-wrap">
       <canvas id="stage" width="360" height="360" aria-label="场景预览"></canvas>
     </div>
     <p id="missing" hidden>缺少此场景动作，请补导入。不会借用其他角色的图片。</p>
     <p id="frame-info" class="muted"></p>
     <p id="inherit-note" class="hint"></p>
+    <p id="scene-device-note" class="hint" hidden></p>
     <label>大小 <span id="pct-v">100%</span><input id="pct" type="range" min="25" max="200" step="1" value="100"></label>
     <label>水平偏移 <span id="ox-v">0</span><input id="ox" type="range" min="-120" max="120" step="1" value="0"></label>
     <label>垂直偏移 <span id="oy-v">0</span><input id="oy" type="range" min="-120" max="120" step="1" value="0"></label>
@@ -437,7 +445,7 @@
       <button id="btn-zero" class="ghost">位置归零</button>
       <button id="btn-reset" class="ghost">恢复大小与位置</button>
     </div>
-    <p class="hint">吃饭场景：在画面空白处拖动，可调整食物位置。其他家装沿用该角色日常客厅 / 睡觉 / 洗澡的设置；走进走出的大小沿用客厅。</p>
+    <p class="hint">吃饭场景：在画面空白处拖动，可调整食物位置。家装场景不用单独调：沿用该角色日常客厅 / 睡觉 / 洗澡的设置；走进走出的大小沿用客厅。</p>
     <div class="row">
       <button id="btn-export">导出角色包</button>
       <button id="btn-send">导出并传到设备</button>
