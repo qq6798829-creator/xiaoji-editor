@@ -377,8 +377,12 @@
     <p>从 PNG 文件夹新建时，请先填写名称，文件夹里至少要有正面（00）和吃饭（eat0、eat1）。</p>
     <input id="png-name" type="text" maxlength="32" placeholder="新角色名称">
     <div class="row">
-      <label class="file">导入 PNG 动作文件夹<input id="btn-import-png" type="file" accept="image/*,.xf,.xfa" multiple webkitdirectory directory></label>
+      <button type="button" class="file" id="btn-import-png-open">导入 PNG 动作文件夹</button>
     </div>
+    <input id="png-import-camera" class="png-import-input" type="file" accept="image/*" capture="environment" tabindex="-1" aria-hidden="true">
+    <input id="png-import-album" class="png-import-input" type="file" accept="image/*,.xf,.xfa" multiple tabindex="-1" aria-hidden="true">
+    <input id="png-import-folder" class="png-import-input" type="file" multiple tabindex="-1" aria-hidden="true">
+    <input id="png-import-zip" class="png-import-input" type="file" accept=".zip,application/zip,application/x-zip-compressed" tabindex="-1" aria-hidden="true">
   </div>
   <div class="ui-block">
     <h2>当前角色</h2>
@@ -501,6 +505,17 @@
   <button data-go="panel-send">传到设备</button>
   <button data-go="panel-about">关于</button>
 </nav>
+<div id="png-import-sheet" class="png-sheet-backdrop" hidden role="dialog" aria-modal="true" aria-labelledby="png-sheet-title">
+  <div class="png-sheet" role="document">
+    <h3 id="png-sheet-title">怎么导入？</h3>
+    <button type="button" data-png-src="camera">拍照</button>
+    <button type="button" data-png-src="album">从相册选择</button>
+    <button type="button" data-png-src="folder">导入文件夹</button>
+    <p class="png-sheet-hint" id="png-folder-hint" hidden>这台浏览器不能选整个文件夹，将打开文件应用，请多选 PNG。也可以改用下面的压缩包。</p>
+    <button type="button" data-png-src="zip">导入压缩包（zip）</button>
+    <button type="button" class="png-sheet-cancel" data-png-src="cancel">取消</button>
+  </div>
+</div>
 <div id="toast"></div>
 <div class="ui-grain" aria-hidden="true"></div>
 <script src="./app.min.js" defer></script>
